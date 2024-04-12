@@ -29,17 +29,17 @@ conda env create -f conda_environment_configuration.yml
 conda activate dds
 
 pip install gdown
+pip install pandas
+pip install matplotlib
+pip install grpcio grpcio-tools
+pip install jupyter
 
+# Download dataset 
 gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
 unzip data-set-dds.zip
 rm -f data-set-dds.zip
 rm -rf data-set
 mv data-set-cpy data-set
-
-pip install pandas
-pip install matplotlib
-pip install grpcio grpcio-tools
-pip install jupyter
 
 cd workspace
 wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
@@ -48,7 +48,7 @@ cp ./frozen_inference_graph.pb ..
 
 # Build Concierge
 cd $HOME
-git clone https://github.com/royyhuang/VAP-Concierge.git
+git clone https://github.com/zharfanf/VAP-Concierge.git
 cd VAP-Concierge/
 
 git checkout vap-zharfanf
@@ -65,4 +65,9 @@ rm -f profile-aws.zip
 mv data-set-cpy data-set
 cd data-set
 for video in ./*; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
+
+sudo mkdir /tmp/ramdisk
+sudo chmod 777 /tmp/ramdisk
+sudo mount -t tmpfs -o size=80g myramdisk /tmp/ramdisk
+mv VAP-Concierge/ /tmp/ramdisk/.
 
