@@ -62,7 +62,7 @@ unzip profile-aws.zip
 rm -f profile-aws.zip
 mv data-set-cpy data-set
 cd data-set
-for video in *; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
+for video in *; do cp -r ../../dds-adaptive/data-set/$video/src/ $video/; done
 
 cd $HOME
 sudo mkdir /tmp/ramdisk
