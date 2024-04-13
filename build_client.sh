@@ -54,10 +54,7 @@ cd VAP-Concierge/
 
 git checkout vap-zharfanf
 cd src/app/dds-adaptive/
-gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
-unzip data-set-dds.zip
-rm -f data-set-dds.zip
-mv data-set-cpy data-set
+cp -rf $HOME/dds-zharfanf/data-set .
 
 cd ../awstream-adaptive/
 gdown --id 1vYs4sdrEHrxVMuoUdRjWCbo13ifZ4j-t
@@ -65,7 +62,7 @@ unzip profile-aws.zip
 rm -f profile-aws.zip
 mv data-set-cpy data-set
 cd data-set
-for video in ./*; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
+for video in *; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
 
 cd $HOME
 sudo mkdir /tmp/ramdisk
