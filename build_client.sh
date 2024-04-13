@@ -66,6 +66,7 @@ mv data-set-cpy data-set
 cd data-set
 for video in ./*; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
 
+cd $HOME
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
 sudo mount -t tmpfs -o size=80g myramdisk /tmp/ramdisk
