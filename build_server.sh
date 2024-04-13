@@ -5,6 +5,7 @@ cd $HOME
 sudo apt-get update
 sudo apt install -y iperf3
 sudo apt install -y ffmpeg
+sudo apt install -y unzip
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq &&\
     sudo chmod +x /usr/bin/yq
 
@@ -29,6 +30,10 @@ conda env create -f conda_environment_configuration.yml
 conda activate dds
 
 pip install gdown
+pip install pandas
+pip install matplotlib
+pip install grpcio grpcio-tools
+pip install jupyter
 
 gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
 unzip data-set-dds.zip
@@ -36,10 +41,6 @@ rm -f data-set-dds.zip
 rm -rf data-set
 mv data-set-cpy data-set
 
-pip install pandas
-pip install matplotlib
-pip install grpcio grpcio-tools
-pip install jupyter
 
 cd workspace
 wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
