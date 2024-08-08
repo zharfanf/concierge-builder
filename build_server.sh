@@ -16,7 +16,7 @@ if [[ ! -d  "./miniconda3" ]]; then
 fi
 
 eval "$($HOME/miniconda3/bin/conda shell.bash hook)"
-# Build DDS
+# Build DDS and environment
 git clone https://github.com/zharfanf/dds-zharfanf.git
 
 cd dds-zharfanf/
@@ -29,48 +29,52 @@ conda env create -f conda_environment_configuration.yml
 
 conda activate dds
 
+# Install libraries for DDS
+
 pip install gdown
 pip install pandas
 pip install matplotlib
 pip install grpcio grpcio-tools
 pip install jupyter
 
-gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
-unzip data-set-dds.zip
-rm -f data-set-dds.zip
-rm -rf data-set
-mv data-set-cpy data-set
-
+# Download dataset
+gdown --id 1khK3tPfdqonzpgT_cF8gaQs_rPdBkdKZ
+tar xvgf data-set-dds.tar.gz
+rm -f data-set-dds.tar.gz
+# rm -rf data-set
+# mv data-set-cpy data-set
 
 cd workspace
 wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
 cp ./frozen_inference_graph.pb ..
 
 
-# Build Concierge
+## Build Concierge and environment
 cd $HOME
 git clone https://github.com/zharfanf/VAP-Concierge.git
 cd VAP-Concierge/
 
 git checkout vap-zharfanf
 cd src/app/dds-adaptive/
+# Download model for dds
 wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
-# gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
-# unzip data-set-dds.zip
-# rm -f data-set-dds.zip
-# mv data-set-cpy data-set
 
+
+# Awstream Setup
 cd ../awstream-adaptive/
-wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
-# gdown --id 1vYs4sdrEHrxVMuoUdRjWCbo13ifZ4j-t
-# unzip profile-aws.zip
-# rm -f profile-aws.zip
-# mv data-set-cpy data-set
-# cd data-set
-# for video in ./*; do cp -r ../dds-adaptive/data-set/$video/src/ $video/; done
+# Download model for awstream
+wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+tar xvzf ssd_mobilenet_v2_coco_2018_03_29.tar.gz
+cp ssd_mobilenet_v2_coco_2018_03_29/frozen_inference_graph.pb .
 
+
+# Migrate Concierge to tmp filesystem with ramdisk installed
+# Location: /tmp/ramdisk/VAP-Concierge/
 cd $HOME
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
-sudo mount -t tmpfs -o size=80g myramdisk /tmp/ramdisk
+sudo mount -t tmpfs -o size=100g myramdisk /tmp/ramdisk
 mv VAP-Concierge/ /tmp/ramdisk/.
+
+echo 'export PATH=$PATH:/home/cc/miniconda3/bin' >> ~/.bashrc
+source ~/.bashrc

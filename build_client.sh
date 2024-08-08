@@ -35,12 +35,10 @@ pip install matplotlib
 pip install grpcio grpcio-tools
 pip install jupyter
 
-# Download dataset 
-gdown --id 1_dReQ4jiPCtAQvHZSN56MKyGr5dV1MfR
-unzip data-set-dds.zip
-rm -f data-set-dds.zip
-rm -rf data-set
-mv data-set-cpy data-set
+# Download dataset for dds
+gdown --id 1khK3tPfdqonzpgT_cF8gaQs_rPdBkdKZ
+tar xvzf data-set-dds.tar.gz
+rm -f data-set-dds.tar.gz
 
 cd workspace
 wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
@@ -53,20 +51,27 @@ git clone https://github.com/zharfanf/VAP-Concierge.git
 cd VAP-Concierge/
 
 git checkout vap-zharfanf
+
+# DDS Setup
 cd src/app/dds-adaptive/
 cp -rf $HOME/dds-zharfanf/data-set .
 
+# AWStream Setup
 cd ../awstream-adaptive/
-gdown --id 1vYs4sdrEHrxVMuoUdRjWCbo13ifZ4j-t
-unzip profile-aws.zip
-rm -f profile-aws.zip
-mv data-set-cpy data-set
-cd data-set
-for video in *; do cp -r ../../dds-adaptive/data-set/$video/src/ $video/; done
+# Download dataset for awstream
+gdown --id 14wNMgmQhrVzXlhLKbKvocXrJRXEM9SID
+tar xvzf data-set-awstream.tar.gz
+tar -rf data-set-awstream.tar.gz
 
+
+# Migrate Concierge to tmp filesystem with ramdisk installed
+# Location: /tmp/ramdisk/VAP-Concierge/
 cd $HOME
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
-sudo mount -t tmpfs -o size=80g myramdisk /tmp/ramdisk
+sudo mount -t tmpfs -o size=100g myramdisk /tmp/ramdisk
 mv VAP-Concierge/ /tmp/ramdisk/.
+
+echo 'export PATH=$PATH:/home/cc/miniconda3/bin' >> ~/.bashrc
+source ~/.bashrc
 

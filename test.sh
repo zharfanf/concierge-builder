@@ -1,0 +1,2 @@
+export PATH=/home/cc/.vscode-server/cli/servers/Stable-89de5a8d4d6205e5b11647eb6a74844ca23d2573/server/bin/remote-cli:/home/cc/miniconda3/bin:/home/cc/miniconda3/condabin:/usr/local/cuda/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/cc/miniconda3/bin:/home/cc/miniconda3/bin:/home/cc/miniconda3/bin
+export PATH=$PATH:/home/cc/miniconda3/bin
