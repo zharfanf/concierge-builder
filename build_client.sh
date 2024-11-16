@@ -41,7 +41,8 @@ tar xvzf data-set-dds.tar.gz
 rm -f data-set-dds.tar.gz
 
 cd workspace
-wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
+#wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
+gdown --id 12kMeCtTEO0RF56BTjeWogT4WsEVEN3CE
 cp ./frozen_inference_graph.pb ..
 
 
@@ -59,7 +60,7 @@ cp -rf $HOME/dds-zharfanf/data-set .
 # AWStream Setup
 cd ../awstream-adaptive/
 # Download dataset for awstream
-gdown --id 14wNMgmQhrVzXlhLKbKvocXrJRXEM9SID
+gdown --id 1OLzZ-1Aj7jJGhbzpevUP4dEBDX8ke5GR
 tar xvzf data-set-awstream.tar.gz
 tar -rf data-set-awstream.tar.gz
 
