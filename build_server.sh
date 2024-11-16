@@ -45,7 +45,8 @@ rm -f data-set-dds.tar.gz
 # mv data-set-cpy data-set
 
 cd workspace
-wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
+#wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
+gdown --id 12kMeCtTEO0RF56BTjeWogT4WsEVEN3CE
 cp ./frozen_inference_graph.pb ..
 
 
@@ -57,8 +58,8 @@ cd VAP-Concierge/
 git checkout vap-zharfanf
 cd src/app/dds-adaptive/
 # Download model for dds
-wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
-
+#wget people.cs.uchicago.edu/~kuntai/frozen_inference_graph.pb
+gdown --id 12kMeCtTEO0RF56BTjeWogT4WsEVEN3CE
 
 # Awstream Setup
 cd ../awstream-adaptive/
